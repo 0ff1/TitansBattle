@@ -42,6 +42,8 @@ public abstract class BaseGameConfiguration implements ConfigurationSerializable
     protected Boolean meleeDamage = true;
     @Path("damage-type.ranged")
     protected Boolean rangedDamage = true;
+    @Path("damage.disableDamage")
+    protected Boolean disableDamage = false;
     @Path("minimum.players")
     protected Integer minimumPlayers = 2;
     @Path("maximum.players")
@@ -177,6 +179,11 @@ public abstract class BaseGameConfiguration implements ConfigurationSerializable
 
     public Boolean isRangedDamage() {
         return rangedDamage;
+    }
+
+    public boolean disableDamage()
+    {
+        return disableDamage;
     }
 
     public Integer getMinimumPlayers() {

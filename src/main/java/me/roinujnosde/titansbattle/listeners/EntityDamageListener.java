@@ -59,6 +59,12 @@ public class EntityDamageListener extends TBListener {
     private void processEntityDamageByEntityEvent(EntityDamageEvent event, Player defender, BaseGame game) {
         DatabaseManager dm = plugin.getDatabaseManager();
 
+        if (game.getConfig().disableDamage())
+        {
+            event.setDamage(0);
+            return;
+        }
+
         EntityDamageByEntityEvent subEvent = (EntityDamageByEntityEvent) event;
         Player attacker = Helper.getPlayerAttackerOrKiller(subEvent.getDamager());
         if (!isDamageTypeAllowed(subEvent, game)) {
