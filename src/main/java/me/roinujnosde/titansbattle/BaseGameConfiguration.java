@@ -65,6 +65,8 @@ public abstract class BaseGameConfiguration implements ConfigurationSerializable
 
     @Path("time.preparation")
     protected Integer preparationTime = 30;
+    @Path("time.preparation.freezePlayer")
+    protected Boolean freezePlayer = true;
     @Path("time.expiration")
     protected Integer expirationTime = 3600;
 
@@ -235,6 +237,11 @@ public abstract class BaseGameConfiguration implements ConfigurationSerializable
 
     public Integer getPreparationTime() {
         return preparationTime;
+    }
+
+    public Boolean getFreezePlayer()
+    {
+        return freezePlayer;
     }
 
     public Integer getExpirationTime() {

@@ -45,6 +45,7 @@ public abstract class BaseGame {
     protected BaseGameConfiguration config;
     protected boolean lobby;
     protected boolean battle;
+    protected boolean preparation = false;
     protected final List<Warrior> participants = new ArrayList<>();
     protected final Map<Warrior, Group> groups = new HashMap<>();
     protected final HashMap<Warrior, Integer> killsCount = new HashMap<>();
@@ -163,6 +164,10 @@ public abstract class BaseGame {
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public abstract boolean isInBattle(@NotNull Warrior warrior);
+
+    public boolean inPreparation() {
+        return preparation;
+    }
 
     public @NotNull BaseGameConfiguration getConfig() {
         return config;
@@ -604,6 +609,8 @@ public abstract class BaseGame {
     }
 
     protected void startPreparation() {
+        preparation = true;
+
         addTask(new PreparationTimeTask().runTaskLater(plugin, getConfig().getPreparationTime() * 20));
         addTask(new CountdownTitleTask(getCurrentFighters(), getConfig().getPreparationTime()).runTaskTimer(plugin, 0L, 20L));
     }
@@ -688,6 +695,7 @@ public abstract class BaseGame {
             broadcastKey("preparation_over");
             runCommandsBeforeBattle(getCurrentFighters());
             battle = true;
+            preparation = false;
             
             if (getConfig().isWorldBorder()) {
                 long borderInterval = getConfig().getBorderInterval() * 20L;

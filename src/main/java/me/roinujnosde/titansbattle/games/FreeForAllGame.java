@@ -34,7 +34,7 @@ public class FreeForAllGame extends Game {
 
     @Override
     public boolean isInBattle(@NotNull Warrior warrior) {
-        return battle && participants.contains(warrior);
+        return (battle || preparation) && participants.contains(warrior);
     }
 
     @Override

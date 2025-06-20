@@ -37,7 +37,7 @@ public class EliminationTournamentGame extends Game {
 
     @Override
     public boolean isInBattle(@NotNull Warrior warrior) {
-        if (!battle) {
+        if (!battle && !preparation) {
             return false;
         }
         return isCurrentDuelist(warrior);
